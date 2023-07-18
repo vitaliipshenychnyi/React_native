@@ -1,8 +1,7 @@
 {
   "expo": {
-    "engine": "hermes",
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "expo-font",
+    "slug": "expo-font",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
