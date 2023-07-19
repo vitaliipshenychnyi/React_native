@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 
 export const Registration = () => {
@@ -17,11 +17,13 @@ export const Registration = () => {
     setSecureTextEntry(!secureTextEntry);
   };
   return (
+    // автоматично коригує макет при появі клавіатури
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+        {/* обгортка вікна реєстрації */}
         <View
           style={{
             ...styles.formWrapper,
@@ -29,24 +31,30 @@ export const Registration = () => {
             height: isOpenKeyboard ? 360 : 'auto',
           }}
         >
+          {/* місце під фото з + */}
           <View style={styles.photoWrapper}>
+            {/* обгортка для створення клікабельності елементу */}
             <TouchableOpacity style={styles.addPhotoButton}>
               <Text style={{ color: '#FF6C00' }}>+</Text>
             </TouchableOpacity>
           </View>
+
           <Text style={styles.title}>Реєстрація</Text>
+
           <TextInput
             style={[styles.commonTextParams, styles.input]}
             placeholder="Логін"
             onFocus={() => setIsOpenKeyboard(true)}
             onBlur={() => setIsOpenKeyboard(false)}
           ></TextInput>
+
           <TextInput
             style={[styles.commonTextParams, styles.input]}
             placeholder="Адреса електронної пошти"
             onFocus={() => setIsOpenKeyboard(true)}
             onBlur={() => setIsOpenKeyboard(false)}
           ></TextInput>
+
           <View>
             <TextInput
               style={[styles.commonTextParams, styles.input]}
@@ -58,6 +66,8 @@ export const Registration = () => {
               onBlur={() => setIsOpenKeyboard(false)}
               value={password}
             />
+            
+            {/* клікабельний текст в input */}
             <TouchableOpacity
               style={{ position: 'absolute', top: 16, right: 16 }}
               onPress={togglePassword}
@@ -65,11 +75,15 @@ export const Registration = () => {
               <Text>{secureTextEntry ? 'Показати' : 'Сховати'}</Text>
             </TouchableOpacity>
           </View>
+
+          {/* кнопка Зареєструватися */}
           <TouchableOpacity style={styles.button}>
             <Text style={[styles.commonTextParams, styles.buttonText]}>
               Зареєстуватися
             </Text>
           </TouchableOpacity>
+
+          {/* посилання на Увійти */}
           <TouchableOpacity>
             <Text
               style={[
@@ -102,7 +116,6 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     backgroundColor: 'white',
     width: '100%',
-    // height: 549,
     position: 'absolute',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,

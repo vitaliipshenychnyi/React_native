@@ -16,14 +16,17 @@ export const Login = () => {
   const togglePassword = () => {
     setSecureTextEntry(!secureTextEntry);
   };
-  const shouldShowText = secureTextEntry && !password;
+
+  // const shouldShowText = secureTextEntry && !password;
 
   return (
+    // автоматично коригує макет при появі клавіатури
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ flex: 1 }}
     >
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+        {/* обгортка вікна входу */}
         <View
           style={{
             ...styles.formWrapper,
@@ -32,11 +35,13 @@ export const Login = () => {
           }}
         >
           <Text style={styles.title}>Увійти</Text>
+
           <TextInput
             style={[styles.commonTextParams, styles.input]}
             placeholder="Адреса електронної пошти"
             onFocus={() => setIsOpenKeyboard(true)}
           ></TextInput>
+
           <View>
             <TextInput
               style={[styles.commonTextParams, styles.input]}
@@ -48,6 +53,8 @@ export const Login = () => {
               onBlur={() => setIsOpenKeyboard(false)}
               value={password}
             />
+
+            {/* клікабельний текст в input */}
             <TouchableOpacity
               style={{ position: 'absolute', top: 16, right: 16 }}
               onPress={togglePassword}
@@ -55,11 +62,15 @@ export const Login = () => {
               <Text>{secureTextEntry ? 'Показати' : 'Сховати'}</Text>
             </TouchableOpacity>
           </View>
+
+          {/* кнопка Увійти */}
           <TouchableOpacity style={styles.button}>
             <Text style={[styles.commonTextParams, styles.buttonText]}>
-              Зареєстуватися
+              Увійти
             </Text>
           </TouchableOpacity>
+
+          {/* посилання на Зареєструватися */}
           <TouchableOpacity>
             <Text
               style={[
@@ -67,7 +78,7 @@ export const Login = () => {
                 { color: '#1B4371', textAlign: 'center' },
               ]}
             >
-              Вже є акаунт? Увійти
+              Немає акаунту? Зареєструватися
             </Text>
           </TouchableOpacity>
         </View>
@@ -77,7 +88,7 @@ export const Login = () => {
 };
 const styles = StyleSheet.create({
   title: {
-    // fontFamily: 'Roboto',
+    fontFamily: 'Roboto',
     fontSize: 30,
     fontWeight: 500,
     lineHeight: 35.16,
@@ -91,7 +102,6 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     backgroundColor: 'white',
     width: '100%',
-    // height: 489,
     position: 'absolute',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -126,7 +136,6 @@ const styles = StyleSheet.create({
   },
   commonTextParams: {
     fontFamily: 'Roboto',
-    // fontWeight: 400,
     fontSize: 16,
     lineHeight: 18.75,
   },
