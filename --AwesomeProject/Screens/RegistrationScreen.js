@@ -40,7 +40,6 @@ export const RegistrationScreen = () => {
 
 const styles = StyleSheet.create({
   wrapperInput: {
-    display: 'flex',
     gap: 16,
   },
   input: {

@@ -1,14 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, ImageBackground, Keyboard } from 'react-native';
-import { Registration } from './Screens/RegistrationScreen';
-import { Login } from './Screens/LoginScreen';
-import { useFonts } from 'expo-font';
-import { TouchableWithoutFeedback } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View, ImageBackground, Keyboard } from "react-native";
+import { Registration } from "./screens/RegistrationScreen";
+import { Login } from "./screens/LoginScreen";
+import { useFonts } from "expo-font";
+import { TouchableWithoutFeedback } from "react-native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    'Roboto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
-    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
   if (!fontsLoaded) {
     return null;
@@ -17,7 +17,7 @@ export default function App() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <ImageBackground
-          source={require('./assets/images/Photo-BG.jpg')}
+          source={require("./assets/images/Photo-BG.jpg")}
           resizeMode="cover"
           style={styles.image}
         >
@@ -33,10 +33,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   image: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
 });
