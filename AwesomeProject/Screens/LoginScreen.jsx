@@ -11,6 +11,8 @@ import {
 
 export const Login = () => {
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [isOpenKeyboard, setIsOpenKeyboard] = useState(false);
 
@@ -18,7 +20,13 @@ export const Login = () => {
     setSecureTextEntry(!secureTextEntry);
   };
 
-  // const shouldShowText = secureTextEntry && !password;
+  const handleSubmit = evt => {
+    console.log({ email, password });
+
+    // очищення форми
+    setPassword('');
+    setEmail('');
+  };
 
   return (
     // автоматично коригує макет при появі клавіатури
@@ -41,6 +49,8 @@ export const Login = () => {
             style={[styles.commonTextParams, styles.input]}
             placeholder="Адреса електронної пошти"
             onFocus={() => setIsOpenKeyboard(true)}
+            onChangeText={setEmail}
+            value={email}
           ></TextInput>
 
           <View>
@@ -49,9 +59,9 @@ export const Login = () => {
               placeholder="Пароль"
               textContentType="password"
               secureTextEntry={secureTextEntry}
-              onChange={setPassword}
               onFocus={() => setIsOpenKeyboard(true)}
               onBlur={() => setIsOpenKeyboard(false)}
+              onChangeText={setPassword}
               value={password}
             />
 
@@ -65,7 +75,7 @@ export const Login = () => {
           </View>
 
           {/* кнопка Увійти */}
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={[styles.commonTextParams, styles.buttonText]}>
               Увійти
             </Text>

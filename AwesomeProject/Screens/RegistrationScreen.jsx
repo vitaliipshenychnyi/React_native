@@ -11,11 +11,25 @@ import {
 
 export const Registration = () => {
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState('');
+
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [isOpenKeyboard, setIsOpenKeyboard] = useState(false);
   const togglePassword = () => {
     setSecureTextEntry(!secureTextEntry);
   };
+
+  // функція отримання даних з форми
+  const handleSubmit = evt => {
+    console.log({ login, email, password });
+
+    // очищення форми
+    setPassword('');
+    setEmail('');
+    setLogin('');
+  };
+
   return (
     // автоматично коригує макет при появі клавіатури
     <KeyboardAvoidingView
@@ -46,6 +60,8 @@ export const Registration = () => {
             placeholder="Логін"
             onFocus={() => setIsOpenKeyboard(true)}
             onBlur={() => setIsOpenKeyboard(false)}
+            onChangeText={setLogin}
+            value={login}
           ></TextInput>
 
           <TextInput
@@ -53,6 +69,8 @@ export const Registration = () => {
             placeholder="Адреса електронної пошти"
             onFocus={() => setIsOpenKeyboard(true)}
             onBlur={() => setIsOpenKeyboard(false)}
+            onChangeText={setEmail}
+            value={email}
           ></TextInput>
 
           <View>
@@ -61,12 +79,12 @@ export const Registration = () => {
               placeholder="Пароль"
               textContentType="password"
               secureTextEntry={secureTextEntry}
-              onChange={setPassword}
               onFocus={() => setIsOpenKeyboard(true)}
               onBlur={() => setIsOpenKeyboard(false)}
+              onChangeText={setPassword}
               value={password}
             />
-            
+
             {/* клікабельний текст в input */}
             <TouchableOpacity
               style={{ position: 'absolute', top: 16, right: 16 }}
@@ -77,7 +95,7 @@ export const Registration = () => {
           </View>
 
           {/* кнопка Зареєструватися */}
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={[styles.commonTextParams, styles.buttonText]}>
               Зареєстуватися
             </Text>
